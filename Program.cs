@@ -37,7 +37,6 @@ namespace NumbersGame
                     Console.WriteLine("Tyvärr du gissade för högt!");
                 }
             }
-            if (attempts <= 0)
             {
                 Console.WriteLine("Du har använt dina 5 försök, tyvärr.");
             }
