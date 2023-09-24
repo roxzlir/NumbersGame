@@ -39,7 +39,7 @@ namespace NumbersGame
             }
             if (attempts <= 0)
             {
-                Console.WriteLine("Du har använt dina 5 försök, tyvärr."); 
+                Console.WriteLine("Du har använt dina 5 försök, tyvärr.");
             }
 
 
