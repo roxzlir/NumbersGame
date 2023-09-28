@@ -8,29 +8,30 @@ namespace NumbersGame
         {
             Console.WriteLine("Välkommen! Jag tänker på ett nummer. Kan du gissa vilket? Du får fem försök!");
 
-
-            int secretNumber = RandomNumber();
+            int secretNumber = RandomNumber(); //Tilldelar int genom att anropa metoden.
             int attempts = 5;
 
-            
             while (attempts > 0)
             {
-                int guess = GetInputNumber();
-                //Console.WriteLine(CheckGuesses(guess, secretNumber))
-                if (guess == secretNumber)
+                int userGuess = GetInputNumber(); //Tilldelar användarens input till en fast int.
+
+                Console.WriteLine(CheckGuess(userGuess, secretNumber)); //Skickar med userGuess och secretNumber till metoden som retunerar string direkt för utskrift
+                if (CheckGuess(userGuess, secretNumber) == "Wohoo! Du klarade det!") //Bryter loopen om metoden retunerar stringen med korrekt text.
                 {
-                    Console.WriteLine("Wohoo! Du klarade det!");
                     break;
                 }
                 else
                 {
-                    CheckGuess(guess, secretNumber);
                     attempts--;
                 }
             }
             if (attempts == 0)
             {
                 Console.WriteLine("Du har använt dina 5 försök, tyvärr.");
+            }
+            else
+            {
+                Console.WriteLine("Vad grym du är på att gissa!");
             }
         }
 
@@ -42,7 +43,7 @@ namespace NumbersGame
               return randomNumber;
         }
 
-        public static int GetInputNumber() //Skapar en till metod för felsökning av inmatningen från användare. Kommer loopas tills ett heltal matas in, sedan retunerar det heltalet.
+        public static int GetInputNumber() //Skapar en till metod för felsökning av inmatningen från användare. Kommer loopas tills ett heltal matas in, sedan retunerar det heltalet i en int.
         {
               int result;
               while (true)
@@ -60,69 +61,34 @@ namespace NumbersGame
                 return result;
         }
 
-
-        public static void CheckGuess(int guess, int secretNumber)
+        public static string CheckGuess(int userInput, int goalNumber) //Skapar en if sats i en metod som retunerar olika texter(string) beroende på hur nära userInput ligger mot goalNumber.
         {
-            //if (guess == secretNumber)
-            //{
-            //    Console.WriteLine("Wohoo! Du klarade det!");
-            //}
-            if (guess == secretNumber + 1 || guess == secretNumber - 1)
-            {
-                Console.WriteLine("Nu bränns det, du är nära nu!");
-            }
-            else if (guess > secretNumber + 10)
-            {
-                Console.WriteLine("Oj du gissar alldelse för högt!");
-            }
-            else if (guess < secretNumber)
-            {
-                Console.WriteLine("Tyvärr du gissade för lågt!");
-            }
-            else if (guess > secretNumber)
-            {
-                Console.WriteLine("Tyvärr du gissade för högt!");
-            }
-        }
-
-        public static string CheckGuesses(int guess, int secretNumber)
-        {
-
-            
-            if (guess == secretNumber)
+            if (userInput == goalNumber)
             {
                 string respons = "Wohoo! Du klarade det!";
                 return respons;
                 
             }
-            else if (guess == secretNumber + 1 || guess == secretNumber - 1)
+            else if (userInput == goalNumber + 1 || userInput == goalNumber - 1)
             {
                 string respons = "Nu bränns det, du är nära nu!";
                 return respons;
             }
-            else if (guess > secretNumber + 10)
+            else if (userInput > goalNumber + 10)
             {
                 string respons = "Oj du gissar alldelse för högt!";
                 return respons;
             }
-            else if (guess < secretNumber)
+            else if (userInput < goalNumber)
             {
                 string respons = "Tyvärr du gissade för lågt!";
                 return respons;
             }
-            else if (guess > secretNumber)
+            else 
             {
                 string respons = "Tyvärr du gissade för högt!";
                 return respons;
             }
-            else
-            {
-                string respons = "Tack för att du spelar!";
-                return respons;
-            }
-         
-            
-
         }
     }
 }
